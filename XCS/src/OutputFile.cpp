@@ -24,7 +24,7 @@ OutputFile::~OutputFile() {
 }
 
 void OutputFile::insertHeader() {
-	m_ofs << "\documentclass[12pt,openright,twoside,letterpaper,english,brazil,sumario=tradicional]{abntex2}\n";
+	m_ofs << "\\documentclass[12pt,openright,twoside,letterpaper,english,brazil,sumario=tradicional]{abntex2}\n";
 	m_ofs << "\\usepackage{cmap}\n";
 	m_ofs << "\\usepackage{lmodern}\n";
 	m_ofs << "\\usepackage[T1]{fontenc}\n";
