@@ -18,8 +18,8 @@ class Chromosome {
 public:
 	Chromosome(std::map<unsigned int, bool>&, const unsigned int);
 	virtual ~Chromosome();
-	//std::map<unsigned int, bool> getMessage() const;
-	//unsigned int getMessageSize() const;
+	std::map<unsigned int, bool> getMessage() const;
+	unsigned int getMessageSize() const;
 	void showChromosome() const;
 private:
 	const std::map<unsigned int, bool> m_message { };

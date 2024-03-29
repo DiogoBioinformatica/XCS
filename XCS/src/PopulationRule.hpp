@@ -13,9 +13,11 @@
 #include <map>
 #include <random>
 #include <functional>
+#include <vector>
 
 #include "Chromosome.hpp"
 #include "Instance.hpp"
+#include "Rule.hpp"
 
 namespace XCS {
 
@@ -28,9 +30,12 @@ public:
 	template<typename T>
 	unsigned int makeSeed(const unsigned int, T, T);
 	std::map<unsigned int, bool> makeRule(const std::map<unsigned int, bool>&);
+	bool analysisSet(const Rule&, const Chromosome&) const;
+	void makeCovering(const Chromosome&, const Chromosome&, const Chromosome&);
 private:
 	const unsigned int m_multiplexersize { };
 	std::random_device mch;
+	std::vector<Rule> m_rules;
 };
 
 } /* namespace XCS */

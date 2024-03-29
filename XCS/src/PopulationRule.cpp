@@ -22,13 +22,14 @@ PopulationRule::PopulationRule(const unsigned int t_loopnumber,
 		makeMessage(t_k, state, group);
 		//d::cout << "GGG " <<
 
-		Chromosome chrstate(state, m_multiplexersize);
-		Chromosome chrgroup(group, 1);
+		auto chrstate = std::unique_ptr<Chromosome>(
+				new Chromosome(state, m_multiplexersize));
+		auto chrgroup = std::unique_ptr<Chromosome>(new Chromosome(group, 1));
 
 		std::cout << "Ind: ";
-		chrstate.showChromosome();
+		chrstate->showChromosome();
 		std::cout << ":";
-		chrgroup.showChromosome();
+		chrgroup->showChromosome();
 
 		std::cout << " -> ";
 
@@ -39,11 +40,47 @@ PopulationRule::PopulationRule(const unsigned int t_loopnumber,
 		std::cout << "Rule: ";
 		chrrule->showChromosome();
 		std::cout << ":";
-		chrgroup.showChromosome();
+		chrgroup->showChromosome();
 		std::cout << "\n";
 
-		//Instance instance = Instance(chrstate, chrgroup, 10);
-		//instance.showInstance();
+		bool flagtotal = 1;
+		float filledsum = 0.0;
+		if (m_rules.size() != 0) {
+			bool flag = 0;
+
+			for (auto &ruleloop : m_rules) {
+				std::cout << "  Sets:\t";
+				ruleloop.showRule();
+				std::cout << " ";
+				chrrule->showChromosome();
+				std::cout << ":";
+				chrgroup->showChromosome();
+				float filled = static_cast<float>((m_multiplexersize
+						- chrrule->getMessageSize()))
+						/ static_cast<float>(m_multiplexersize);
+				filledsum += static_cast<float>(filled);
+
+				std::cout << "{" << filled << "}";
+				if (analysisSet(ruleloop, *chrrule) == 0) {
+					std::cout << " match!!";
+					flagtotal = 0;
+				} else {
+					flag = 1;
+				}
+				std::cout << "\n";
+			}
+
+			if (flagtotal == 1) {
+				makeCovering(*chrstate, *chrgroup, *chrrule);
+			}
+		} else {
+			makeCovering(*chrstate, *chrgroup, *chrrule);
+		}
+		std::cout << "filledSum: " << filledsum << "\n";
+		std::cout << "Iteration: " << i + 1 << " Pop Size: " << m_rules.size()
+				<< " AveGen: "
+				<< (static_cast<float>(filledsum)
+						/ static_cast<float>(m_rules.size()));
 	}
 }
 
@@ -99,6 +136,38 @@ std::map<unsigned int, bool> PopulationRule::makeRule(
 		}
 	}
 	return result;
+}
+
+bool PopulationRule::analysisSet(const Rule &t_ruleloop,
+		const Chromosome &t_rulecover) const {
+	std::map<unsigned int, bool> ruleloop = t_ruleloop.getRuleMessage();
+	std::map<unsigned int, bool> rulecover = t_rulecover.getMessage();
+
+	bool ruleflag = 0;
+	for (auto it2 = rulecover.begin(); it2 != rulecover.end(); it2++) {
+		auto itfind = ruleloop.find(it2->first);
+		if (itfind != ruleloop.end()) {
+			if (it2->second != ruleloop[it2->first]) {
+				ruleflag = 1;
+			}
+		} else {
+			ruleflag = 1;
+		}
+	}
+	return ruleflag;
+}
+
+void PopulationRule::makeCovering(const Chromosome &chrstate,
+		const Chromosome &chrgroup, const Chromosome &chrrule) {
+	std::cout << "Rule:\t";
+	chrrule.showChromosome();
+	std::cout << ":";
+	chrgroup.showChromosome();
+	std::cout << "\n";
+	Rule rule = Rule(chrstate, chrgroup, chrrule,
+			static_cast<float>((m_multiplexersize - chrrule.getMessageSize()))
+					/ static_cast<float>(m_multiplexersize));
+	m_rules.push_back(rule);
 }
 
 } /* namespace XCS */

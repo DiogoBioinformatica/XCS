@@ -17,6 +17,14 @@ Chromosome::Chromosome(std::map<unsigned int, bool> &t_message,
 Chromosome::~Chromosome() {
 }
 
+std::map<unsigned int, bool> Chromosome::getMessage() const {
+	return m_message;
+}
+
+unsigned int Chromosome::getMessageSize() const {
+	return m_message.size();
+}
+
 void Chromosome::showChromosome() const {
 	auto it = m_message.begin();
 	for (unsigned int i = 0; i != m_messagesize; ++i) {
