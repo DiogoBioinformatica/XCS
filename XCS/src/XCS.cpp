@@ -14,15 +14,16 @@
 #include "OutputFile.hpp"
 #include "PopulationRule.hpp"
 
-
 int main() {
 	auto start = std::chrono::high_resolution_clock::now();
 
 	const unsigned int loopnumber = 15;
-		const unsigned int k = 2;
+	const unsigned int k = 2;
 
-		auto populationrule = std::unique_ptr<XCS::PopulationRule>(
-				new XCS::PopulationRule(loopnumber, (std::pow(2,k) + k), k));
+	auto outputfile = std::unique_ptr<XCS::OutputFile>(new XCS::OutputFile());
+
+	auto populationrule = std::unique_ptr<XCS::PopulationRule>(
+			new XCS::PopulationRule(*outputfile, loopnumber, (std::pow(2, k) + k), k));
 
 	auto result = std::chrono::high_resolution_clock::now() - start;
 	long long microseconds = std::chrono::duration_cast<

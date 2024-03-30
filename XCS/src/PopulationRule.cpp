@@ -9,9 +9,11 @@
 
 namespace XCS {
 
-PopulationRule::PopulationRule(const unsigned int t_loopnumber,
+PopulationRule::PopulationRule(OutputFile &t_outputfile, const unsigned int t_loopnumber,
 		const unsigned int t_multiplexersize, const unsigned int t_k) :
 		m_multiplexersize(t_multiplexersize) {
+
+	m_outputfile = t_outputfile;
 	for (unsigned int i = 0; i != t_loopnumber; ++i) {
 		std::cout << "\n---------------------------\n";
 		//long unsigned int* groupindex;

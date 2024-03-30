@@ -18,12 +18,13 @@
 #include "Chromosome.hpp"
 #include "Instance.hpp"
 #include "Rule.hpp"
+#include "OutputFile.hpp"
 
 namespace XCS {
 
 class PopulationRule {
 public:
-	PopulationRule(const unsigned int, const unsigned int, const unsigned int);
+	PopulationRule(OutputFile&, const unsigned int, const unsigned int, const unsigned int);
 	virtual ~PopulationRule();
 	void makeMessage(const unsigned int, std::map<unsigned int, bool>&,
 			std::map<unsigned int, bool>&);
@@ -36,6 +37,7 @@ private:
 	const unsigned int m_multiplexersize { };
 	std::random_device mch;
 	std::vector<Rule> m_rules;
+	OutputFile m_outputfile;
 };
 
 } /* namespace XCS */
