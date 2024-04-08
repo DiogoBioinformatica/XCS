@@ -17,7 +17,7 @@ class Instance: public Individual {
 public:
 	Instance(const Chromosome&, const Chromosome&, unsigned int);
 	virtual ~Instance();
-	void showInstance() const;
+	std::string showInstance() const;
 private:
 	const unsigned int m_hash { };
 };

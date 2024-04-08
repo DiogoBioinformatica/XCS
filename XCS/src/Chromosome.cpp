@@ -25,17 +25,19 @@ unsigned int Chromosome::getMessageSize() const {
 	return m_message.size();
 }
 
-void Chromosome::showChromosome() const {
+std::string Chromosome::showChromosome() const {
+	std::stringstream buffer { };
 	auto it = m_message.begin();
 	for (unsigned int i = 0; i != m_messagesize; ++i) {
 		auto itfind = m_message.find(i);
 		if (itfind != m_message.end()) {
-			std::cout << it->second;
+			buffer << it->second;
 			++it;
 		} else {
-			std::cout << "#";
+			buffer << "\\#";
 		}
 	}
+	return buffer.str();
 }
 
 } /* namespace XCS */

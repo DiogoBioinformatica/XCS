@@ -18,7 +18,7 @@ public:
 	virtual ~Rule();
 	std::map<unsigned int, bool> getRuleMessage() const;
 	unsigned int getRuleMessageSize() const;
-	void showRule() const;
+	std::string showRule() const;
 private:
 	Chromosome m_rulestate;
 	Chromosome m_rulegroup;

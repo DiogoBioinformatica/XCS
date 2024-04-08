@@ -9,41 +9,46 @@
 
 namespace XCS {
 
-PopulationRule::PopulationRule(OutputFile &t_outputfile, const unsigned int t_loopnumber,
+PopulationRule::PopulationRule( std::unique_ptr<OutputFile> &t_outputfile, const unsigned int t_loopnumber,
 		const unsigned int t_multiplexersize, const unsigned int t_k) :
 		m_multiplexersize(t_multiplexersize) {
 
-	m_outputfile = t_outputfile;
 	for (unsigned int i = 0; i != t_loopnumber; ++i) {
-		std::cout << "\n---------------------------\n";
+		m_buffer << "\n---------------------------\n";
 		//long unsigned int* groupindex;
 
 		std::map<unsigned int, bool> state;
 		std::map<unsigned int, bool> group;
 
 		makeMessage(t_k, state, group);
-		//d::cout << "GGG " <<
 
 		auto chrstate = std::unique_ptr<Chromosome>(
 				new Chromosome(state, m_multiplexersize));
 		auto chrgroup = std::unique_ptr<Chromosome>(new Chromosome(group, 1));
 
-		std::cout << "Ind: ";
-		chrstate->showChromosome();
-		std::cout << ":";
-		chrgroup->showChromosome();
+		std::stringstream m_load { };
 
-		std::cout << " -> ";
+		m_load << "\\par Ind: ";
+		m_load << chrstate->showChromosome();
+		m_load << ":";
+		m_load << chrgroup->showChromosome();
+		m_buffer << "\n";
+		m_buffer << t_outputfile->flushLeft(m_load.str());
+		m_buffer << " -> ";
 
 		auto message = makeRule(state);
 		auto chrrule = std::unique_ptr<Chromosome>(
 				new Chromosome(message, m_multiplexersize));
 
-		std::cout << "Rule: ";
-		chrrule->showChromosome();
-		std::cout << ":";
-		chrgroup->showChromosome();
-		std::cout << "\n";
+		m_load.trunc;
+
+		m_load << "Rule: ";
+		m_load << chrrule->showChromosome();
+		m_load << ":";
+		m_load << chrgroup->showChromosome();
+		m_load << "\n";
+
+		m_buffer << t_outputfile->flushLeft(m_load.str());
 
 		bool flagtotal = 1;
 		float filledsum = 0.0;
@@ -51,25 +56,25 @@ PopulationRule::PopulationRule(OutputFile &t_outputfile, const unsigned int t_lo
 			bool flag = 0;
 
 			for (auto &ruleloop : m_rules) {
-				std::cout << "  Sets:\t";
-				ruleloop.showRule();
-				std::cout << " ";
-				chrrule->showChromosome();
-				std::cout << ":";
-				chrgroup->showChromosome();
+				m_buffer << "  Sets:\t";
+				m_buffer << ruleloop.showRule();
+				m_buffer << " ";
+				m_buffer << chrrule->showChromosome();
+				m_buffer << ":";
+				m_buffer << chrgroup->showChromosome();
 				float filled = static_cast<float>((m_multiplexersize
 						- chrrule->getMessageSize()))
 						/ static_cast<float>(m_multiplexersize);
 				filledsum += static_cast<float>(filled);
 
-				std::cout << "{" << filled << "}";
+				m_buffer << "{" << filled << "}";
 				if (analysisSet(ruleloop, *chrrule) == 0) {
-					std::cout << " match!!";
+					m_buffer << " match!!";
 					flagtotal = 0;
 				} else {
 					flag = 1;
 				}
-				std::cout << "\n";
+				m_buffer << "\n";
 			}
 
 			if (flagtotal == 1) {
@@ -78,12 +83,13 @@ PopulationRule::PopulationRule(OutputFile &t_outputfile, const unsigned int t_lo
 		} else {
 			makeCovering(*chrstate, *chrgroup, *chrrule);
 		}
-		std::cout << "filledSum: " << filledsum << "\n";
-		std::cout << "Iteration: " << i + 1 << " Pop Size: " << m_rules.size()
+		m_buffer << "filledSum: " << filledsum << "\n";
+		m_buffer << "Iteration: " << i + 1 << " Pop Size: " << m_rules.size()
 				<< " AveGen: "
 				<< (static_cast<float>(filledsum)
 						/ static_cast<float>(m_rules.size()));
 	}
+	makeFile(t_outputfile);
 }
 
 PopulationRule::~PopulationRule() {
@@ -161,15 +167,21 @@ bool PopulationRule::analysisSet(const Rule &t_ruleloop,
 
 void PopulationRule::makeCovering(const Chromosome &chrstate,
 		const Chromosome &chrgroup, const Chromosome &chrrule) {
-	std::cout << "Rule:\t";
-	chrrule.showChromosome();
-	std::cout << ":";
-	chrgroup.showChromosome();
-	std::cout << "\n";
+	m_buffer << "Rule:\t";
+	m_buffer << chrrule.showChromosome();
+	m_buffer << ":";
+	m_buffer << chrgroup.showChromosome();
+	m_buffer << "\n";
 	Rule rule = Rule(chrstate, chrgroup, chrrule,
 			static_cast<float>((m_multiplexersize - chrrule.getMessageSize()))
 					/ static_cast<float>(m_multiplexersize));
 	m_rules.push_back(rule);
+}
+
+void PopulationRule::makeFile(std::unique_ptr<OutputFile> &t_outputfile) {
+	t_outputfile->insertHeader();
+	t_outputfile->insertLine(m_buffer.str());
+	t_outputfile->insertFooter();
 }
 
 } /* namespace XCS */

@@ -8,6 +8,9 @@
 #ifndef INDIVIDUAL_HPP_
 #define INDIVIDUAL_HPP_
 
+#include <string>
+#include <sstream>
+
 #include "Chromosome.hpp"
 
 namespace XCS {
@@ -16,7 +19,7 @@ class Individual {
 public:
 	Individual(const Chromosome&, const Chromosome&);
 	virtual ~Individual();
-	void showIndividual() const;
+	std::string showIndividual() const;
 protected:
 	const Chromosome m_state;
 	const Chromosome m_group;

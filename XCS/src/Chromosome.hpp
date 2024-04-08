@@ -11,6 +11,8 @@
 #include <map>
 #include <iostream>
 #include <memory>
+#include <string>
+#include <sstream>
 
 namespace XCS {
 
@@ -20,7 +22,7 @@ public:
 	virtual ~Chromosome();
 	std::map<unsigned int, bool> getMessage() const;
 	unsigned int getMessageSize() const;
-	void showChromosome() const;
+	std::string showChromosome() const;
 private:
 	const std::map<unsigned int, bool> m_message { };
 	const unsigned int m_messagesize { };

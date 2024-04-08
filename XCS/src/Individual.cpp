@@ -18,10 +18,12 @@ Individual::~Individual() {
 }
 
 
-void Individual::showIndividual() const {
-	m_state.showChromosome();
-	std::cout << ":";
-	m_group.showChromosome();
+std::string Individual::showIndividual() const {
+	std::stringstream buffer { };
+	buffer << m_state.showChromosome();
+	buffer << ":";
+	buffer << m_group.showChromosome();
+	return buffer.str();
 }
 
 } /* namespace XCS */

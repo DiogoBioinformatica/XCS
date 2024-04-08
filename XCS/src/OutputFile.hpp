@@ -12,6 +12,9 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <string>
+#include <sstream>
+#include <stdlib.h>
 
 namespace XCS {
 
@@ -22,6 +25,7 @@ public:
 	void insertHeader();
 	void insertFooter();
 	void insertLine(const std::string&);
+	std::string flushLeft(const std::string&);
 	void insertTableBegin(std::string&);
 	void insertTableEnd(std::string&, std::string&);
 	void insertItemize(std::vector<std::string>&);

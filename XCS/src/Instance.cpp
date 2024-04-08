@@ -18,9 +18,11 @@ Instance::Instance(const Chromosome &t_state, const Chromosome &t_group,
 Instance::~Instance() {
 }
 
-void Instance::showInstance() const {
-	std::cout << "[" << m_hash << "] ";
-	Individual::showIndividual();
+std::string Instance::showInstance() const {
+	std::stringstream buffer { };
+	buffer << "[" << m_hash << "] ";
+	buffer << Individual::showIndividual();
+	return buffer.str();
 }
 
 } /* namespace XCS */

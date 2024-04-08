@@ -23,7 +23,7 @@ int main() {
 	auto outputfile = std::unique_ptr<XCS::OutputFile>(new XCS::OutputFile());
 
 	auto populationrule = std::unique_ptr<XCS::PopulationRule>(
-			new XCS::PopulationRule(*outputfile, loopnumber, (std::pow(2, k) + k), k));
+			new XCS::PopulationRule(outputfile, loopnumber, (std::pow(2, k) + k), k));
 
 	auto result = std::chrono::high_resolution_clock::now() - start;
 	long long microseconds = std::chrono::duration_cast<

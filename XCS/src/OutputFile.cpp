@@ -13,7 +13,7 @@ OutputFile::OutputFile() {
 	m_ofs.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 
 	try {
-		m_ofs.open("Output/main.tex", std::ofstream::out | std::ofstream::app);
+		m_ofs.open("Output/main.tex", std::ofstream::out | std::ofstream::ate);
 	} catch (std::ofstream::failure &e) {
 		std::cerr << e.code().message() << std::endl;
 	}
@@ -21,6 +21,7 @@ OutputFile::OutputFile() {
 
 OutputFile::~OutputFile() {
 	m_ofs.close();
+	system("cd Output ; latex main.tex ; dvips main.dvi ; ps2pdf main.ps");
 }
 
 void OutputFile::insertHeader() {
@@ -35,17 +36,25 @@ void OutputFile::insertHeader() {
 	m_ofs << "\\setlength{\\parindent}{1.3cm}\n";
 	m_ofs << "\\setlength{\\parskip}{0.2cm}\n";
 	m_ofs << "\\usepackage{longtable}\n";
-	m_ofs << "\\begin{document}";
+	m_ofs << "\\begin{document}\n";
 }
 
 void OutputFile::insertFooter() {
-	m_ofs << "\end{document}";
+	m_ofs << "\n\\end{document}";
 }
 
 void OutputFile::insertLine(const std::string &line) {
 	m_ofs << line;
 }
 
+
+std::string OutputFile::flushLeft(const std::string &line) {
+	std::stringstream buffer { };
+	buffer << "\\begin{flushleft}\\ttfamily\n";
+	buffer << line;
+	buffer << "\\end{flushleft}";
+	return buffer.str();
+}
 void OutputFile::insertTableBegin(std::string &extrarowheight) {
 	m_ofs << "\\begin{center}\\setlength{\\extrarowheight}{" << extrarowheight
 			<< "}\\begin{longtable}{cr|cr}\\hline";

@@ -25,11 +25,13 @@ unsigned int Rule::getRuleMessageSize() const {
 	return m_rulestate.getMessageSize();
 }
 
-void Rule::showRule() const {
-	m_rulestate.showChromosome();
-	std::cout << ":";
-	m_rulegroup.showChromosome();
-	std::cout << " filled: " << m_filled;
+std::string Rule::showRule() const {
+	std::stringstream buffer;
+	buffer << m_rulestate.showChromosome();
+	buffer << ":";
+	buffer << m_rulegroup.showChromosome();
+	buffer << " filled: " << m_filled;
+	return buffer.str();
 }
 
 } /* namespace XCS */
