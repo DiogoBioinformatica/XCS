@@ -25,6 +25,7 @@ public:
 	void insertHeader();
 	void insertFooter();
 	void insertLine(const std::string&);
+	std::string insertLineColour(const std::string&, const std::vector<float>&);
 	std::string flushLeft(const std::string&);
 	void insertTableBegin(std::string&);
 	void insertTableEnd(std::string&, std::string&);

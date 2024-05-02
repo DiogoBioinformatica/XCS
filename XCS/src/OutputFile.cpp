@@ -32,6 +32,7 @@ void OutputFile::insertHeader() {
 	m_ofs << "\\usepackage[utf8]{inputenc}\n";
 	m_ofs << "\\usepackage{indentfirst}\n";
 	m_ofs << "\\usepackage{color}\n";
+	m_ofs << "\\usepackage{xcolor}\n";
 	m_ofs << "\\usepackage{graphicx}\n";
 	m_ofs << "\\setlength{\\parindent}{1.3cm}\n";
 	m_ofs << "\\setlength{\\parskip}{0.2cm}\n";
@@ -45,6 +46,22 @@ void OutputFile::insertFooter() {
 
 void OutputFile::insertLine(const std::string &line) {
 	m_ofs << line;
+}
+
+std::string OutputFile::insertLineColour(const std::string &line, const std::vector<float> &colours) {
+	std::stringstream buffer { };
+	const unsigned int coloursize = colours.size();
+	unsigned int ind = 0;
+	buffer << "\\textcolor[cmy]{";
+	for (auto &colour : colours) {
+		buffer << colour;
+		if (ind < coloursize) {
+			buffer << ",";
+			++ind;
+		}
+	}
+	buffer << "}{" << line << "}";
+	return buffer.str();
 }
 
 

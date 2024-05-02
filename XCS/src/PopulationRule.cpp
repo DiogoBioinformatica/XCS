@@ -14,7 +14,7 @@ PopulationRule::PopulationRule( std::unique_ptr<OutputFile> &t_outputfile, const
 		m_multiplexersize(t_multiplexersize) {
 
 	for (unsigned int i = 0; i != t_loopnumber; ++i) {
-		m_buffer << "\n---------------------------\n";
+		m_buffer << "---------------------------\n";
 		//long unsigned int* groupindex;
 
 		std::map<unsigned int, bool> state;
@@ -22,35 +22,35 @@ PopulationRule::PopulationRule( std::unique_ptr<OutputFile> &t_outputfile, const
 
 		makeMessage(t_k, state, group);
 
-		auto chrstate = std::unique_ptr<Chromosome>(
-				new Chromosome(state, m_multiplexersize));
-		auto chrgroup = std::unique_ptr<Chromosome>(new Chromosome(group, 1));
+		Chromosome chrstate(state, m_multiplexersize);
+		Chromosome chrgroup(group, 1);
 
 		std::stringstream m_load { };
 
 		m_load << "\\par Ind: ";
-		m_load << chrstate->showChromosome();
+		m_load << chrstate.showChromosome();
 		m_load << ":";
-		m_load << chrgroup->showChromosome();
+		m_load << chrgroup.showChromosome();
 		m_buffer << "\n";
 		m_buffer << t_outputfile->flushLeft(m_load.str());
 		m_buffer << " -> ";
 
 		auto message = makeRule(state);
-		auto chrrule = std::unique_ptr<Chromosome>(
-				new Chromosome(message, m_multiplexersize));
+		Chromosome chrrulestate(message, m_multiplexersize);
+
+		const std::vector<float> colours{ makeSeed(2, static_cast<float>(0), static_cast<float>(1)), makeSeed(2, static_cast<float>(0), static_cast<float>(1)), makeSeed(2, static_cast<float>(0), static_cast<float>(1)) };
+
+		auto rule = std::unique_ptr<Rule>(new Rule(chrstate, chrgroup, chrrulestate, colours));
 
 		m_load.trunc;
-
 		m_load << "Rule: ";
-		m_load << chrrule->showChromosome();
-		m_load << ":";
-		m_load << chrgroup->showChromosome();
+		m_load << t_outputfile->insertLineColour(rule->showRule(), rule->getColours());
+
 		m_load << "\n";
 
 		m_buffer << t_outputfile->flushLeft(m_load.str());
 
-		bool flagtotal = 1;
+		/*bool flagtotal = 1;
 		float filledsum = 0.0;
 		if (m_rules.size() != 0) {
 			bool flag = 0;
@@ -87,7 +87,7 @@ PopulationRule::PopulationRule( std::unique_ptr<OutputFile> &t_outputfile, const
 		m_buffer << "Iteration: " << i + 1 << " Pop Size: " << m_rules.size()
 				<< " AveGen: "
 				<< (static_cast<float>(filledsum)
-						/ static_cast<float>(m_rules.size()));
+						/ static_cast<float>(m_rules.size()));*/
 	}
 	makeFile(t_outputfile);
 }
@@ -115,7 +115,7 @@ void PopulationRule::makeMessage(const unsigned int t_k,
 }
 
 template<typename T>
-unsigned int PopulationRule::makeSeed(const unsigned int seedtype, T rangeinf,
+T PopulationRule::makeSeed(const unsigned int seedtype, T rangeinf,
 		T rangesup) {
 	std::default_random_engine generator(mch());
 	if (seedtype == 0) {
@@ -124,12 +124,19 @@ unsigned int PopulationRule::makeSeed(const unsigned int seedtype, T rangeinf,
 		auto weight = std::bind(distribution, generator);
 		return weight();
 
-	} else {
+	} else if (seedtype == 1) {
 		std::binomial_distribution<unsigned int> distribution(rangesup,
 				rangeinf);
 		auto weight = std::bind(distribution, generator);
 		return weight();
+	}  else {
+		std::uniform_real_distribution<> distribution(rangesup,
+				rangeinf);
+		auto weight = std::bind(distribution, generator);
+		return weight();
 	}
+
+
 }
 
 std::map<unsigned int, bool> PopulationRule::makeRule(
@@ -172,10 +179,10 @@ void PopulationRule::makeCovering(const Chromosome &chrstate,
 	m_buffer << ":";
 	m_buffer << chrgroup.showChromosome();
 	m_buffer << "\n";
-	Rule rule = Rule(chrstate, chrgroup, chrrule,
+	/*Rule rule = Rule(chrstate, chrgroup, chrrule,
 			static_cast<float>((m_multiplexersize - chrrule.getMessageSize()))
-					/ static_cast<float>(m_multiplexersize));
-	m_rules.push_back(rule);
+					/ static_cast<float>(m_multiplexersize));*/
+	//m_rules.push_back(rule);
 }
 
 void PopulationRule::makeFile(std::unique_ptr<OutputFile> &t_outputfile) {

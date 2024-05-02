@@ -10,8 +10,8 @@
 namespace XCS {
 
 Rule::Rule(const Chromosome &t_state, const Chromosome &t_group,
-		const Chromosome &t_rulestate, const float t_filled) :
-		Individual(t_state, t_group), m_rulestate(t_rulestate), m_rulegroup(t_group), m_filled(t_filled) {
+		const Chromosome &t_rulestate, const std::vector<float> &t_colours) :
+		Individual(t_state, t_group), m_rulestate(t_rulestate), m_rulegroup(t_group), m_colours(t_colours) {
 }
 
 Rule::~Rule() {
@@ -25,12 +25,16 @@ unsigned int Rule::getRuleMessageSize() const {
 	return m_rulestate.getMessageSize();
 }
 
+std::vector<float> Rule::getColours() const {
+	return m_colours;
+}
+
 std::string Rule::showRule() const {
 	std::stringstream buffer;
 	buffer << m_rulestate.showChromosome();
 	buffer << ":";
 	buffer << m_rulegroup.showChromosome();
-	buffer << " filled: " << m_filled;
+	//buffer << " filled: " << m_filled;
 	return buffer.str();
 }
 

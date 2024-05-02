@@ -5,217 +5,86 @@
 \usepackage[utf8]{inputenc}
 \usepackage{indentfirst}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{graphicx}
 \setlength{\parindent}{1.3cm}
 \setlength{\parskip}{0.2cm}
 \usepackage{longtable}
 \begin{document}
-
 ---------------------------
 
 \begin{flushleft}\ttfamily
-\par Ind: 010111:1\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 010111:1Rule: 01\#1\#\#:1
-\end{flushleft}Rule:	01\#1\#\#:1
-filledSum: 0
-Iteration: 1 Pop Size: 1 AveGen: 0
----------------------------
+\par Ind: 100111:1\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 100111:1Rule: \textcolor[cmy]{0.0067389,0.464581,0.351225,}{\#0\#11\#:1}
+\end{flushleft}---------------------------
 
 \begin{flushleft}\ttfamily
-\par Ind: 110110:0\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 110110:0Rule: 110\#\#\#:0
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 110\#\#\#:0{0.5}
-Rule:	110\#\#\#:0
-filledSum: 0.5
-Iteration: 2 Pop Size: 2 AveGen: 0.25
----------------------------
+\par Ind: 000101:0\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 000101:0Rule: \textcolor[cmy]{0.473342,0.137244,0.179844,}{\#\#0\#\#\#:0}
+\end{flushleft}---------------------------
 
 \begin{flushleft}\ttfamily
-\par Ind: 011110:1\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 011110:1Rule: \#11\#1\#:1
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 \#11\#1\#:1{0.5}
-  Sets:	110\#\#\#:0 filled: 0.5 \#11\#1\#:1{0.5}
-Rule:	\#11\#1\#:1
-filledSum: 1
-Iteration: 3 Pop Size: 3 AveGen: 0.333333
----------------------------
+\par Ind: 111000:0\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 111000:0Rule: \textcolor[cmy]{0.899923,0.324427,0.200657,}{\#\#1\#00:0}
+\end{flushleft}---------------------------
 
 \begin{flushleft}\ttfamily
-\par Ind: 110100:0\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 110100:0Rule: \#1\#\#0\#:0
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 \#1\#\#0\#:0{0.666667}
-  Sets:	110\#\#\#:0 filled: 0.5 \#1\#\#0\#:0{0.666667}
-  Sets:	\#11\#1\#:1 filled: 0.5 \#1\#\#0\#:0{0.666667}
-Rule:	\#1\#\#0\#:0
-filledSum: 2
-Iteration: 4 Pop Size: 4 AveGen: 0.5
----------------------------
+\par Ind: 001101:1\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 001101:1Rule: \textcolor[cmy]{0.838505,0.452994,0.786672,}{001\#0\#:1}
+\end{flushleft}---------------------------
 
 \begin{flushleft}\ttfamily
-\par Ind: 011110:1\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 011110:1Rule: 0\#\#\#\#0:1
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 0\#\#\#\#0:1{0.666667}
-  Sets:	110\#\#\#:0 filled: 0.5 0\#\#\#\#0:1{0.666667}
-  Sets:	\#11\#1\#:1 filled: 0.5 0\#\#\#\#0:1{0.666667}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 0\#\#\#\#0:1{0.666667}
-Rule:	0\#\#\#\#0:1
-filledSum: 2.66667
-Iteration: 5 Pop Size: 5 AveGen: 0.533333
----------------------------
+\par Ind: 001110:1\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 001110:1Rule: \textcolor[cmy]{0.416749,0.233193,0.0518743,}{\#01110:1}
+\end{flushleft}---------------------------
 
 \begin{flushleft}\ttfamily
-\par Ind: 100001:0\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 100001:0Rule: 1\#\#\#01:0
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 1\#\#\#01:0{0.5}
-  Sets:	110\#\#\#:0 filled: 0.5 1\#\#\#01:0{0.5}
-  Sets:	\#11\#1\#:1 filled: 0.5 1\#\#\#01:0{0.5}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 1\#\#\#01:0{0.5}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 1\#\#\#01:0{0.5}
-Rule:	1\#\#\#01:0
-filledSum: 2.5
-Iteration: 6 Pop Size: 6 AveGen: 0.416667
----------------------------
-
-\begin{flushleft}\ttfamily
-\par Ind: 011100:0\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 011100:0Rule: \#\#11\#\#:0
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 \#\#11\#\#:0{0.666667}
-  Sets:	110\#\#\#:0 filled: 0.5 \#\#11\#\#:0{0.666667}
-  Sets:	\#11\#1\#:1 filled: 0.5 \#\#11\#\#:0{0.666667}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 \#\#11\#\#:0{0.666667}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 \#\#11\#\#:0{0.666667}
-  Sets:	1\#\#\#01:0 filled: 0.5 \#\#11\#\#:0{0.666667}
-Rule:	\#\#11\#\#:0
-filledSum: 4
-Iteration: 7 Pop Size: 7 AveGen: 0.571429
----------------------------
-
-\begin{flushleft}\ttfamily
-\par Ind: 111110:0\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 111110:0Rule: 11\#\#1\#:0
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 11\#\#1\#:0{0.5}
-  Sets:	110\#\#\#:0 filled: 0.5 11\#\#1\#:0{0.5}
-  Sets:	\#11\#1\#:1 filled: 0.5 11\#\#1\#:0{0.5}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 11\#\#1\#:0{0.5}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 11\#\#1\#:0{0.5}
-  Sets:	1\#\#\#01:0 filled: 0.5 11\#\#1\#:0{0.5}
-  Sets:	\#\#11\#\#:0 filled: 0.666667 11\#\#1\#:0{0.5}
-Rule:	11\#\#1\#:0
-filledSum: 3.5
-Iteration: 8 Pop Size: 8 AveGen: 0.4375
----------------------------
-
-\begin{flushleft}\ttfamily
-\par Ind: 100110:1\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 100110:1Rule: \#\#0\#\#\#:1
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 \#\#0\#\#\#:1{0.833333}
-  Sets:	110\#\#\#:0 filled: 0.5 \#\#0\#\#\#:1{0.833333} match!!
-  Sets:	\#11\#1\#:1 filled: 0.5 \#\#0\#\#\#:1{0.833333}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 \#\#0\#\#\#:1{0.833333}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 \#\#0\#\#\#:1{0.833333}
-  Sets:	1\#\#\#01:0 filled: 0.5 \#\#0\#\#\#:1{0.833333}
-  Sets:	\#\#11\#\#:0 filled: 0.666667 \#\#0\#\#\#:1{0.833333}
-  Sets:	11\#\#1\#:0 filled: 0.5 \#\#0\#\#\#:1{0.833333}
-filledSum: 6.66667
-Iteration: 9 Pop Size: 8 AveGen: 0.833333
----------------------------
-
-\begin{flushleft}\ttfamily
-\par Ind: 111011:1\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 111011:1Rule: 1\#\#\#\#1:1
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 1\#\#\#\#1:1{0.666667}
-  Sets:	110\#\#\#:0 filled: 0.5 1\#\#\#\#1:1{0.666667}
-  Sets:	\#11\#1\#:1 filled: 0.5 1\#\#\#\#1:1{0.666667}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 1\#\#\#\#1:1{0.666667}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 1\#\#\#\#1:1{0.666667}
-  Sets:	1\#\#\#01:0 filled: 0.5 1\#\#\#\#1:1{0.666667} match!!
-  Sets:	\#\#11\#\#:0 filled: 0.666667 1\#\#\#\#1:1{0.666667}
-  Sets:	11\#\#1\#:0 filled: 0.5 1\#\#\#\#1:1{0.666667}
-filledSum: 5.33333
-Iteration: 10 Pop Size: 8 AveGen: 0.666667
----------------------------
-
-\begin{flushleft}\ttfamily
-\par Ind: 110101:1\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 110101:1Rule: 1\#0\#\#\#:1
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 1\#0\#\#\#:1{0.666667}
-  Sets:	110\#\#\#:0 filled: 0.5 1\#0\#\#\#:1{0.666667} match!!
-  Sets:	\#11\#1\#:1 filled: 0.5 1\#0\#\#\#:1{0.666667}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 1\#0\#\#\#:1{0.666667}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 1\#0\#\#\#:1{0.666667}
-  Sets:	1\#\#\#01:0 filled: 0.5 1\#0\#\#\#:1{0.666667}
-  Sets:	\#\#11\#\#:0 filled: 0.666667 1\#0\#\#\#:1{0.666667}
-  Sets:	11\#\#1\#:0 filled: 0.5 1\#0\#\#\#:1{0.666667}
-filledSum: 5.33333
-Iteration: 11 Pop Size: 8 AveGen: 0.666667
----------------------------
-
-\begin{flushleft}\ttfamily
-\par Ind: 011000:0\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 011000:0Rule: \#\#1000:0
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 \#\#1000:0{0.333333}
-  Sets:	110\#\#\#:0 filled: 0.5 \#\#1000:0{0.333333}
-  Sets:	\#11\#1\#:1 filled: 0.5 \#\#1000:0{0.333333}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 \#\#1000:0{0.333333}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 \#\#1000:0{0.333333}
-  Sets:	1\#\#\#01:0 filled: 0.5 \#\#1000:0{0.333333}
-  Sets:	\#\#11\#\#:0 filled: 0.666667 \#\#1000:0{0.333333}
-  Sets:	11\#\#1\#:0 filled: 0.5 \#\#1000:0{0.333333}
-Rule:	\#\#1000:0
-filledSum: 2.66667
-Iteration: 12 Pop Size: 9 AveGen: 0.296296
----------------------------
-
-\begin{flushleft}\ttfamily
-\par Ind: 101101:1\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 101101:1Rule: 10\#\#\#\#:1
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 10\#\#\#\#:1{0.666667}
-  Sets:	110\#\#\#:0 filled: 0.5 10\#\#\#\#:1{0.666667}
-  Sets:	\#11\#1\#:1 filled: 0.5 10\#\#\#\#:1{0.666667}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 10\#\#\#\#:1{0.666667}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 10\#\#\#\#:1{0.666667}
-  Sets:	1\#\#\#01:0 filled: 0.5 10\#\#\#\#:1{0.666667}
-  Sets:	\#\#11\#\#:0 filled: 0.666667 10\#\#\#\#:1{0.666667}
-  Sets:	11\#\#1\#:0 filled: 0.5 10\#\#\#\#:1{0.666667}
-  Sets:	\#\#1000:0 filled: 0.333333 10\#\#\#\#:1{0.666667}
-Rule:	10\#\#\#\#:1
-filledSum: 6
-Iteration: 13 Pop Size: 10 AveGen: 0.6
----------------------------
-
-\begin{flushleft}\ttfamily
-\par Ind: 000000:0\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 000000:0Rule: 0000\#0:0
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 0000\#0:0{0.166667}
-  Sets:	110\#\#\#:0 filled: 0.5 0000\#0:0{0.166667}
-  Sets:	\#11\#1\#:1 filled: 0.5 0000\#0:0{0.166667}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 0000\#0:0{0.166667}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 0000\#0:0{0.166667}
-  Sets:	1\#\#\#01:0 filled: 0.5 0000\#0:0{0.166667}
-  Sets:	\#\#11\#\#:0 filled: 0.666667 0000\#0:0{0.166667}
-  Sets:	11\#\#1\#:0 filled: 0.5 0000\#0:0{0.166667}
-  Sets:	\#\#1000:0 filled: 0.333333 0000\#0:0{0.166667}
-  Sets:	10\#\#\#\#:1 filled: 0.666667 0000\#0:0{0.166667}
-Rule:	0000\#0:0
-filledSum: 1.66667
-Iteration: 14 Pop Size: 11 AveGen: 0.151515
----------------------------
+\par Ind: 101111:1\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 101111:1Rule: \textcolor[cmy]{0.741688,0.163733,0.939221,}{1\#\#1\#\#:1}
+\end{flushleft}---------------------------
 
 \begin{flushleft}\ttfamily
 \par Ind: 100100:1\end{flushleft} -> \begin{flushleft}\ttfamily
-\par Ind: 100100:1Rule: \#0\#100:1
-\end{flushleft}  Sets:	01\#1\#\#:1 filled: 0.5 \#0\#100:1{0.333333}
-  Sets:	110\#\#\#:0 filled: 0.5 \#0\#100:1{0.333333}
-  Sets:	\#11\#1\#:1 filled: 0.5 \#0\#100:1{0.333333}
-  Sets:	\#1\#\#0\#:0 filled: 0.666667 \#0\#100:1{0.333333}
-  Sets:	0\#\#\#\#0:1 filled: 0.666667 \#0\#100:1{0.333333}
-  Sets:	1\#\#\#01:0 filled: 0.5 \#0\#100:1{0.333333}
-  Sets:	\#\#11\#\#:0 filled: 0.666667 \#0\#100:1{0.333333}
-  Sets:	11\#\#1\#:0 filled: 0.5 \#0\#100:1{0.333333}
-  Sets:	\#\#1000:0 filled: 0.333333 \#0\#100:1{0.333333}
-  Sets:	10\#\#\#\#:1 filled: 0.666667 \#0\#100:1{0.333333}
-  Sets:	0000\#0:0 filled: 0.166667 \#0\#100:1{0.333333}
-Rule:	\#0\#100:1
-filledSum: 3.66667
-Iteration: 15 Pop Size: 12 AveGen: 0.305556
+\par Ind: 100100:1Rule: \textcolor[cmy]{0.15013,0.0820292,0.415475,}{10\#\#00:1}
+\end{flushleft}---------------------------
+
+\begin{flushleft}\ttfamily
+\par Ind: 011101:0\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 011101:0Rule: \textcolor[cmy]{0.921296,0.23939,0.828805,}{\#11\#\#\#:0}
+\end{flushleft}---------------------------
+
+\begin{flushleft}\ttfamily
+\par Ind: 011100:0\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 011100:0Rule: \textcolor[cmy]{0.912663,0.990557,0.832037,}{01110\#:0}
+\end{flushleft}---------------------------
+
+\begin{flushleft}\ttfamily
+\par Ind: 011001:0\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 011001:0Rule: \textcolor[cmy]{0.860186,0.0557536,0.572045,}{\#1\#\#\#\#:0}
+\end{flushleft}---------------------------
+
+\begin{flushleft}\ttfamily
+\par Ind: 010111:1\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 010111:1Rule: \textcolor[cmy]{0.77476,0.877768,0.107538,}{01\#111:1}
+\end{flushleft}---------------------------
+
+\begin{flushleft}\ttfamily
+\par Ind: 111011:1\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 111011:1Rule: \textcolor[cmy]{0.148769,0.659432,0.0836686,}{\#\#1\#\#\#:1}
+\end{flushleft}---------------------------
+
+\begin{flushleft}\ttfamily
+\par Ind: 011011:1\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 011011:1Rule: \textcolor[cmy]{0.81623,0.48781,0.85583,}{\#\#10\#\#:1}
+\end{flushleft}---------------------------
+
+\begin{flushleft}\ttfamily
+\par Ind: 110101:1\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 110101:1Rule: \textcolor[cmy]{0.656842,0.0207149,0.337039,}{11010\#:1}
+\end{flushleft}---------------------------
+
+\begin{flushleft}\ttfamily
+\par Ind: 110011:1\end{flushleft} -> \begin{flushleft}\ttfamily
+\par Ind: 110011:1Rule: \textcolor[cmy]{0.251202,0.718679,0.393992,}{110\#11:1}
+\end{flushleft}
 \end{document}

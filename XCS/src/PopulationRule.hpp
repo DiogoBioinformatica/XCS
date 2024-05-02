@@ -31,7 +31,7 @@ public:
 	void makeMessage(const unsigned int, std::map<unsigned int, bool>&,
 			std::map<unsigned int, bool>&);
 	template<typename T>
-	unsigned int makeSeed(const unsigned int, T, T);
+	T makeSeed(const unsigned int, T, T);
 	std::map<unsigned int, bool> makeRule(const std::map<unsigned int, bool>&);
 	bool analysisSet(const Rule&, const Chromosome&) const;
 	void makeCovering(const Chromosome&, const Chromosome&, const Chromosome&);
